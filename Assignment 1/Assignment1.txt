@@ -594,7 +594,7 @@ class Twothree{
 		public static void main ( String args[]){
 			int time= 3;
 
-			if (12>time || time>5)
+			if (12>time && time>5)
 			{
 				System.out.println("Good Morning");
 			}
