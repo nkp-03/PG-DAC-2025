@@ -1,0 +1,857 @@
+1. public class Main { 
+ public void main(String[] args) { 
+ System.out.println("Hello, World!"); 
+ } 
+} 
+ What error do you get when running this code?
+
+--> Main method is not static in class Main, please define the main method as:
+   public static void main(String[] args)
+
+--> Corrected code:
+	public class Main { 
+ 		public static void main(String[] args) { 
+ 			System.out.println("Hello, World!"); 
+ 		} 
+	} 
+
+
+2.public class Main { 
+ static void main(String[] args) { 
+ System.out.println("Hello, World!"); 
+ } 
+} 
+What happens when you compile and run this code?
+
+-->  Main method not found in class Main, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+
+--> Corrected code:
+	public class Main { 
+ 		public static void main(String[] args) { 
+ 			System.out.println("Hello, World!"); 
+ 		} 
+	} 
+
+
+3.public class Main { 
+ public static int main(String[] args) { 
+ System.out.println("Hello, World!"); 
+ return 0; 
+ }
+} 
+ What error do you encounter? Why is void used in the main method?
+
+--> 1.method main in class Main must be public, static, and void
+    public static int main(String[] args) {
+    2.The keyword void tells Java that the main method won't return a value. 
+
+--> Corrected code:
+	public class Main { 
+ 		public static void main(String[] args) { 
+ 			System.out.println("Hello, World!"); 
+ 		} 
+	}
+
+4.public class Main { 
+ public static void main() { 
+ System.out.println("Hello, World!"); 
+ } 
+} 
+ What happens when you compile and run this code? Why is String[] args needed?
+
+--> 1.Main method not found in class Main, please define the main method as:
+   public static void main(String[] args)
+   or a JavaFX application class must extend javafx.application.Application
+    2.String args in Java is used to pass command-line arguments to a Java program. 
+    It allows external data to be passed into the program when it starts, making it more versatile and adaptable to various inputs.
+
+--> Corrected code:
+	public class Main { 
+ 		public static void main(String[] args) { 
+ 			System.out.println("Hello, World!"); 
+ 		} 
+	}
+
+5.public class Main { 
+ public static void main(String[] args) { 
+ System.out.println("Main method with String[] args"); 
+ } 
+ public static void main(int[] args) { 
+ System.out.println("Overloaded main method with int[] args"); 
+ } 
+} 
+ Can you have multiple main methods? What do you observe?
+
+--> 1.Yes, We can have multiple main methods with different parameter lists. However, the JVM will only 
+    call the main method with the signature public static void main(String[] args) when starting your program.
+    2. I got the output from main method with the signature public static void main(String[] args)
+
+6.public class Main { 
+ public static void main(String[] args) { 
+ int x = y + 10; 
+ System.out.println(x); 
+ } 
+} 
+ What error occurs? Why must variables be declared?
+
+--> 1. cannot find symbol
+ 	int x = y + 10;
+         ^
+  	symbol:   variable y
+  	location: class Main
+    2. The main purpose of variable declaration is to store the required data in the memory location in the form of variables 
+	so that we can use them in our program to perform any operation or task. 
+
+--> Corrected code:
+	public class Main { 
+ 		public static void main(String[] args) { 
+			int y;
+ 			int x = y + 10; 
+ 			System.out.println(x); 
+ 		} 
+	} 
+
+
+7. public class Main { 
+ public static void main(String[] args) { 
+ int x = "Hello"; 
+ System.out.println(x); 
+ } 
+} 
+ What compilation error do you see? Why does Java enforce type safety?
+
+--> 1. incompatible types: String cannot be converted to int
+	int x = "Hello";
+    2. Java enforces type safety to prevent unbound access to memory.
+
+--> Corrected code:
+	public class Main { 
+ 		public static void main(String[] args) { 
+			 string x = "Hello"; 
+			 System.out.println(x); 
+		 } 
+	} 
+
+
+8. public class Main { 
+ public static void main(String[] args) { 
+ System.out.println("Hello, World!" 
+ } 
+} 
+ What syntax errors are present? How do they affect compilation?
+
+--> 1.Error 1:-')' expected
+ 	System.out.println("Hello, World!"
+      Error 2:- ';' expected
+ 	System.out.println("Hello, World!")
+    2. I. The right parenthesis (')') is used for closing method call, method declaration as well as 
+	it is used in closing control structures which is important for running program successfully.
+       II. Semicolon is important for terminating statements. Omitting semicolon results in
+	   compile-time error.
+
+--> Corrected code:
+	public class Main { 
+ 		public static void main(String[] args) { 
+ 			System.out.println("Hello, World!"); 
+ 		} 
+	} 
+
+
+9. public class Main { 
+ public static void main(String[] args) { 
+ int class = 10; 
+ System.out.println(class); 
+ } 
+} 
+ What error occurs? Why can't reserved keywords be used as identifiers?
+
+--> 1.not a statement
+     int class = 10;
+    2. Keywords are predefined, reserved identifiers that have special meanings to the compiler.
+     They can't be used as identifiers in your program unless they include @ as a prefix.
+
+--> Corrected code:
+	public class Main { 
+ 		public static void main(String[] args) { 
+ 			int c = 10; 
+ 			System.out.println(c); 
+ 		} 
+	} 
+
+
+10. public class Main { 
+ public void display() { 
+ System.out.println("No parameters"); 
+ } 
+ public void display(int num) { 
+ System.out.println("With parameter: " + num); 
+ } 
+ public static void main(String[] args) { 
+ display(); 
+ display(5); 
+ } 
+} 
+ What happens when you compile and run this code? Is method overloading allowed?
+
+--> 1.Error1: non-static method display() cannot be referenced from a static context
+ 	display();
+      Error2: non-static method display(int) cannot be referenced from a static context
+ 	display(5);
+    2. Overloading a static method means having multiple methods with the same name but with different parameter lists within the same class or subclass.
+	It is possible to overload a static method in Java.
+
+--> Corrected code:
+
+	public class Main { 
+ 		public static void display() { 
+ 		System.out.println("No parameters"); 
+ 		} 
+ 		public static void display(int num) { 
+ 		System.out.println("With parameter: " + num); 
+ 		} 
+ 		public static void main(String[] args) { 
+ 			display(); 
+ 			display(5); 
+ 		} 
+	} 
+
+11. public class Main { 
+ public static void main(String[] args) { 
+ int[] arr = {1, 2, 3}; 
+ System.out.println(arr[5]); 
+ } 
+} 
+ What runtime exception do you encounter? Why does it occur?
+
+--> 1. Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 3
+        at Main.main(Main.java:4)
+    2. Because the array size declared in system.out.println() is larger than the array elements declared in int[] arr.
+
+--> Corrected code:
+	public class Main { 
+ 		public static void main(String[] args) { 
+ 			int[] arr = {1, 2, 3}; 
+ 			System.out.println(arr[5]); 
+ 		} 
+	} 
+
+12. public class Main { 
+ public static void main(String[] args) { 
+ while (true) { 
+ System.out.println("Infinite Loop"); 
+ } 
+ } 
+} 
+ What happens when you run this code? How can you avoid infinite loops?
+
+--> 1) "Infinite Loop" was being printed infinite times.
+    2) Using proper loop conditions we can avoid infinite loops.
+
+--> Corrected code:
+	public class Main { 
+ 		public static void main(String[] args) { 
+ 			while (true) { 
+ 				System.out.println("Infinite Loop"); 
+				break;
+ 				} 
+ 			} 
+		} 
+
+13. public class Main { 
+ public static void main(String[] args) { 
+ String str = null; 
+ System.out.println(str.length()); 
+ } 
+} 
+ What exception is thrown? Why does it occur?
+
+--> 1)Exception in thread "main" java.lang.NullPointerException
+        at Main.main(Main.java:4)
+    2) Since str is null, it does not reference any actual object in memory.
+	while trying to call length(), Java attempts to dereference null, which is not allowed, causing a NullPointerException.
+
+--> Corrected code:
+	public class Main { 
+ 		public static void main(String[] args) { 
+ 			String str = "hi"; 
+ 			System.out.println(str.length()); 
+ 		} 
+	} 
+
+
+14. public class Main { 
+ public static void main(String[] args) { 
+ double num = "Hello"; 
+ System.out.println(num); 
+ } 
+} 
+ What compilation error occurs? Why does Java enforce data type constraints?
+
+--> 1. incompatible types: String cannot be converted to double
+       double num = "Hello";
+    2. Java enforces type constraints to prevent unbound access to memory.
+
+--> Corrected code:
+              public class Main { 
+ 			public static void main(String[] args) { 
+ 				double num = 3.75; 
+ 				System.out.println(num); 
+ 			} 
+		} 
+
+15. public class Main { 
+ public static void main(String[] args) { 
+ int num1 = 10; 
+ double num2 = 5.5; 
+ int result = num1 + num2; 
+ System.out.println(result); 
+ } 
+} 
+ What error occurs when compiling this code? How should you handle different data types 
+in operations?
+
+--> 1. incompatible types: possible lossy conversion from double to int
+ 	int result = num1 + num2;
+    2. By using type casting we can handle different data types in operations.
+
+--> Corrected code:
+              
+		public class Main { 
+ 			public static void main(String[] args) { 
+ 				int num1 = 10; 
+ 				double num2 = 5.5; 
+ 				double result = (double)num1 + num2; 
+ 				System.out.println(result); 
+ 			} 
+		} 
+
+16. public class Main { 
+ public static void main(String[] args) { 
+ int num = 10; 
+ double result = num / 4; 
+ System.out.println(result); 
+ } 
+} 
+ What is the result of this operation? Is the output what you expected?
+
+--> 1. The result is 2.0
+    2. Yes, it is.
+
+
+17. public class Main { 
+ public static void main(String[] args) { 
+ int a = 10; 
+ int b = 5; 
+ int result = a ** b; 
+ System.out.println(result); 
+ } 
+} 
+ What compilation error occurs? Why is the ** operator not valid in Java?
+
+--> 1. illegal start of expression
+ 	int result = a ** b;
+    2. In Java, the ** operator does not exist because Java does not use ** for exponentiation (raising a number to a power), unlike Python.
+
+--> Corrected code:
+         public class Main { 
+ 		public static void main(String[] args) { 
+ 			int a = 10; 
+ 			int b = 5; 
+ 			int result = a * b; 
+ 			System.out.println(result); 
+ 		} 
+	} 
+     
+18. public class Main { 
+ public static void main(String[] args) { 
+ int a = 10; 
+ int b = 5; 
+ int result = a + b * 2; 
+ System.out.println(result); 
+ } 
+} 
+ What is the output of this code? How does operator precedence affect the result?
+
+--> 1. I got output 20.
+    2. Operators of higher precedence (*,/) are evaluated first followed by lower precedence (+, -).
+
+19. public class Main { 
+ public static void main(String[] args) { 
+ int a = 10; 
+ int b = 0; 
+ int result = a / b; 
+ System.out.println(result); 
+ } 
+} 
+ What runtime exception is thrown? Why does division by zero cause an issue in Java?
+
+--> 1. Exception in thread "main" java.lang.ArithmeticException: / by zero
+        at Main.main(Main.java:5)
+    2. Integer division by zero is mathematically undefined. Java prevents invalid operations 
+       by throwing an exception instead of returning garbage values.	
+
+--> --> Corrected code:
+         public class Main { 
+ 		public static void main(String[] args) { 
+ 			int a = 10; 
+ 			int b = 2; 
+ 			int result = a / b; 
+ 			System.out.println(result); 
+ 		} 
+	} 
+
+20. public class Main { 
+ public static void main(String[] args) { 
+ System.out.println("Hello, World") 
+ } 
+} 
+ What syntax error occurs? How does the missing semicolon affect compilation?
+
+--> 1. ';' expected
+ 	System.out.println("Hello, World!")
+    2. Semicolon is important for terminating statements. Omitting semicolon results in
+	   compile-time error.
+
+--> Corrected code:
+	public class Main { 
+ 		public static void main(String[] args) { 
+ 			System.out.println("Hello, World!"); 
+ 		} 
+	} 
+
+21. public class Main { 
+ public static void main(String[] args) { 
+ System.out.println("Hello, World!"); 
+ // Missing closing brace here 
+} 
+ What does the compiler say about mismatched braces?
+
+--> 1. reached end of file while parsing
+	}  
+ 	^
+
+-->  Corrected code:
+	public class Main { 
+ 		public static void main(String[] args) { 
+ 			System.out.println("Hello, World!"); 
+ 			}
+		} 
+
+22. public class Main { 
+ public static void main(String[] args) { 
+ static void displayMessage() { 
+ System.out.println("Message"); 
+ } 
+ } 
+} 
+ What syntax error occurs? Can a method be declared inside another method?
+
+--> 1.Error 1:- illegal start of expression
+ 	static void displayMessage() {
+    2.Error 2:-  class, interface, or enum expected
+}
+^
+    3. No. Method can not be declared under another method.
+
+-->  Corrected code:
+	public class Main { 
+    		static void displayMessage() { 
+        		System.out.println("Message"); 
+    		}
+
+    	public static void main(String[] args) { 
+        	displayMessage(); 
+    		} 
+	}
+
+23. public class Confusion { 
+ public static void main(String[] args) { 
+ int value = 2; 
+ switch(value) { 
+ case 1: 
+ System.out.println("Value is 1"); 
+ case 2: 
+ System.out.println("Value is 2"); 
+ case 3: 
+ System.out.println("Value is 3"); 
+ default: 
+ System.out.println("Default case"); 
+ } 
+ } 
+} 
+ Error to Investigate: Why does the default case print after "Value is 2"? How can you prevent 
+the program from executing the default case?
+
+--> 1. The switch statement does not automatically exit after executing a case.
+	If there is no break;, execution continues into the next case, even if it does not match.
+    2. By using 'Break' statement we can prevent the program from executing the default case.
+
+-->  Corrected code:
+	public class Confusion { 
+ 		public static void main(String[] args) { 
+ 			int value = 2; 
+ 			switch(value) { 
+ 					case 1: 
+ 						System.out.println("Value is 1");
+						break; 
+ 					case 2: 
+ 						System.out.println("Value is 2"); 
+						break;
+ 					case 3: 
+ 						System.out.println("Value is 3"); 
+						break;
+ 					default: 
+ 						System.out.println("Default case"); 
+ 			} 
+ 		} 
+	} 
+
+24. public class MissingBreakCase { 
+ public static void main(String[] args) { 
+ int level = 1; 
+ switch(level) { 
+ case 1: 
+ System.out.println("Level 1"); 
+ case 2: 
+ System.out.println("Level 2"); 
+ case 3: 
+ System.out.println("Level 3"); 
+ default: 
+ System.out.println("Unknown level"); 
+ } 
+ } 
+} 
+ Error to Investigate: When level is 1, why does it print "Level 1", "Level 2", "Level 3", and 
+"Unknown level"? What is the role of the break statement in this situation? 
+
+--> 1. Because the switch case will run until the end if we dont use break statement after the end of each case.
+    2. Break statement ensures that if we get correct result while traversing through switch case , the will not waste
+	by traversing remaining code .
+
+-->  Corrected code:
+	public class Confusion { 
+ 		public static void main(String[] args) { 
+ 			int level = 1; 
+ 			switch(level) { 
+ 					case 1: 
+ 						System.out.println("Level 1"); 
+						break;
+ 					case 2: 
+						System.out.println("Level 2"); 
+						break;
+ 					case 3: 
+ 						System.out.println("Level 3");
+						break; 
+ 					default: 
+ 						System.out.println("Unknown level"); 
+ 			} 
+ 		} 
+	} 
+
+
+25. public class Switch { 
+ public static void main(String[] args) { 
+ double score = 85.0; 
+ switch(score) { 
+ case 100: 
+ System.out.println("Perfect score!"); 
+ break; 
+ case 85: 
+ System.out.println("Great job!"); 
+ break; 
+ default: 
+ System.out.println("Keep trying!"); 
+ } 
+ } 
+} 
+ Error to Investigate: Why does this code not compile? What does the error tell you about the 
+types allowed in switch expressions? How can you modify the code to make it work? 
+
+--> 1. incompatible types: possible lossy conversion from double to int
+ 	switch(score) {
+    2. The code fails to compile because switch statements in Java do not support double (floating-point) values as the expression type.
+
+-->  Corrected code:
+	public class Switch { 
+   		 public static void main(String[] args) { 
+        		int score = 85; // Changed from double to int
+        		switch(score) { 
+            				case 100: 
+                				System.out.println("Perfect score!"); 
+                				break; 
+            				case 85: 
+               					System.out.println("Great job!"); 
+                				break; 
+            				default: 
+                				System.out.println("Keep trying!"); 
+        		} 
+    		} 
+	}
+
+ 
+26. public class Switch { 
+ public static void main(String[] args) { 
+ int number = 5; 
+ switch(number) { 
+ case 5: 
+ System.out.println("Number is 5");
+break; 
+ case 5: 
+ System.out.println("This is another case 5"); 
+ break; 
+ default: 
+ System.out.println("This is the default case"); 
+ } 
+ } 
+} 
+ Error to Investigate: Why does the compiler complain about duplicate case labels? What 
+happens when you have two identical case labels in the same switch block?
+
+--> 1. error: duplicate case label
+        case 5: 
+        ^
+    2. code contains two case 5: labels, which is not allowed in Java.
+
+-->  Corrected code:
+	
+		public class Switch { 
+ 			public static void main(String[] args) { 
+ 				int number = 5; 
+ 				switch(number) { 
+ 						case 5: 
+ 							System.out.println("Number is 5");
+						        break; 
+ 						case 6: 
+ 							System.out.println("This is another case 5"); 
+ 							break; 
+ 						default: 
+ 							System.out.println("This is the default case"); 
+ 				} 
+ 			} 
+		} 
+
+
+27. Grade Classification 
+Write a program to classify student grades based on the following criteria: 
+ If the score is greater than or equal to 90, print "A" 
+ If the score is between 80 and 89, print "B" 
+ If the score is between 70 and 79, print "C" 
+ If the score is between 60 and 69, print "D" 
+ If the score is less than 60, print "F" 
+:-
+import java.util.Scanner;
+class Grade{
+		public static void main (String [] args) {
+
+		Scanner scr= new Scanner(System.in);
+
+		System.out.println("Enter marks: ");
+		int a= scr.nextInt();
+
+		if ( a>=90 )
+		{
+			System.out.println("Grade= A");
+		}
+		else if ( a>=80 && a<90 )
+		{
+			System.out.println("Grade= B");
+		}
+		else if ( a>=70 && a<80 )
+		{
+			System.out.println("Grade= C");
+		}
+		else if ( a>=60 && a<70 )
+		{
+			System.out.println("Grade= D");
+		}
+		else if ( a<60 )
+		{
+			System.out.println("Grade= F");
+		}
+		}
+}
+
+28. Days of the Week 
+Write a program that uses a nested switch statement to print out the day of the week based on an 
+integer input (1 for Monday, 2 for Tuesday, etc.). Additionally, within each day, print whether it 
+is a weekday or weekend. 
+:-
+import java.util.Scanner;
+class Week{
+		public static void main (String [] args) {
+
+		Scanner scr= new Scanner(System.in);
+
+		System.out.println("Enter choice: ");
+		int b= scr.nextInt();
+
+
+		switch (b) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                switch (b) {
+                    case 1: System.out.println("Monday - Weekday"); break;
+                    case 2: System.out.println("Tuesday - Weekday"); break;
+                    case 3: System.out.println("Wednesday - Weekday"); break;
+                    case 4: System.out.println("Thursday - Weekday"); break;
+                    case 5: System.out.println("Friday - Weekday"); break;
+                }
+                break;
+            case 6:
+            case 7:
+                switch (b) {
+                    case 6: System.out.println("Saturday - Weekend"); break;
+                    case 7: System.out.println("Sunday - Weekend"); break;
+                }
+                break;
+            default:
+                System.out.println("Invalid input! Please enter a number between 1 and 7.");
+        }
+    }
+}
+
+29. Calculator 
+Write a program that acts as a simple calculator. It should accept two numbers and an operator 
+(+, -, *, /) as input. Use a switch statement to perform the appropriate operation. Use nested if-
+else to check if division by zero is attempted and display an error message. 
+:-
+import java.util.Scanner;
+
+class Calc {
+    public static void main(String[] args) {
+        Scanner scr = new Scanner(System.in);
+        
+        System.out.print("Enter first number: ");
+        double a = scr.nextDouble();
+        
+        System.out.print("Enter an operator (+, -, *, /): ");
+        char operator = scr.next().charAt(0);
+        
+        System.out.print("Enter second number: ");
+        double b = scr.nextDouble();
+        
+        double result;
+        switch (operator) {
+            case '+':
+                result = a + b;
+                System.out.println("Result: " + result);
+                break;
+            case '-':
+                result = a - b;
+                System.out.println("Result: " + result);
+                break;
+            case '*':
+                result = a * b;
+                System.out.println("Result: " + result);
+                break;
+            case '/':
+                if (b == 0) {
+                    System.out.println("Error! Division by zero is not allowed.");
+                } else {
+                    result = a / b;
+                    System.out.println("Result: " + result);
+                }
+                break;
+            default:
+                System.out.println("Invalid operator! Please use +, -, *, or /.");
+        }
+ 
+    }
+}
+
+30. Discount Calculation 
+Write a program to calculate the discount based on the total purchase amount. Use the following 
+criteria: 
+ If the total purchase is greater than or equal to Rs.1000, apply a 20% discount. 
+ If the total purchase is between Rs.500 and Rs.999, apply a 10% discount. 
+ If the total purchase is less than Rs.500, apply a 5% discount.
+:-
+import java.util.Scanner;
+
+class Discount {
+    public static void main(String[] args) {
+        Scanner scr = new Scanner(System.in);
+        
+        System.out.print("Enter total purchase amount: Rs.");
+        double purt = scr.nextDouble();
+
+	System.out.print("Do you have a membership card? (yes/no): ");
+        String membership = scr.next().toLowerCase();
+        
+        double dis;
+        if (purt >= 1000) {
+            dis = 0.20;
+        } else if (purt >= 500) {
+            dis = 0.10;
+        } else {
+            dis = 0.05;
+        }
+	 
+	if (membership =="yes") {
+            dis += 0.05;
+        }
+        
+        double disAmt = purt * dis;
+        double finalAmt = purt - disAmt;
+        
+        System.out.println("Discount Applied: Rs." + disAmt);
+        System.out.println("Final Amount to be paid: Rs." + finalAmt);
+       
+    }
+}
+
+31.Question 5: Student Pass/Fail Status with Nested Switch 
+Write a program that determines whether a student passes or fails based on their grades in three 
+subjects. If the student scores more than 40 in all subjects, they pass. If the student fails in one or 
+more subjects, print the number of subjects they failed in. 
+:-
+
+import java.util.Scanner;
+class StudentPassFail {
+    public static void main(String[] args) {
+        Scanner scr = new Scanner(System.in);
+        
+        System.out.print("Enter marks for Subject 1: ");
+        int sub1 = scr.nextInt();
+        
+        System.out.print("Enter marks for Subject 2: ");
+        int sub2 = scr.nextInt();
+        
+        System.out.print("Enter marks for Subject 3: ");
+        int sub3 = scr.nextInt();
+        
+        int cnt = 0;
+        
+        switch (sub1 < 40 ? 0 : 1) {
+            case 0: cnt++; 
+		    break;
+        }
+        
+        switch (sub2 < 40 ? 0 : 1) {
+            case 0: cnt++;
+		    break; 
+        }
+        
+        switch (sub3 < 40 ? 0 : 1) {
+            case 0: cnt++;
+		    break;        }
+        
+        switch (cnt) {
+            case 0:
+                System.out.println("The student has passed all subjects.");
+                break;
+            default:
+                System.out.println("The student has failed in " + cnt + " subject(s).");
+                break;
+        }
+
+    }
+}
+
+
+

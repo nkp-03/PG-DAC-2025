@@ -1,0 +1,1066 @@
+SECTION 1:-
+
+Snippet 1:  
+public class InfiniteForLoop { 
+    public static void main(String[] args) { 
+        for (int i = 0; i < 10; i--) { 
+            System.out.println(i); 
+        } 
+    } 
+} 
+// Error to investigate: Why does this loop run infinitely? How should the loop control variable be adjusted? 
+
+--> 1. The loop runs infinitely because because the of the test condition(i<10) as initialization starts from 0 and the it decreases by 1 further each time the iteration happens.
+       It goes in opposite direction and it will always be true so it runs infinitely as long as memory is not full.
+    2. It can stop by increamenting loop control variable in terminating condition instead of decreament as follows:-
+
+--> Corrected code:-
+	public class InfiniteForLoop { 
+    		public static void main(String[] args) { 
+        		for (int i = 0; i < 10; i++) { 
+            			System.out.println(i); 
+        		} 
+    		} 
+	} 
+
+
+Snippet 2:  
+public class IncorrectWhileCondition { 
+    public static void main(String[] args) { 
+        int count = 5; 
+        while (count = 0) { 
+            System.out.println(count); 
+            count--; 
+        } 
+    } 
+} 
+// Error to investigate: Why does the loop not execute as expected? What is the issue with the condition in the 
+`while` loop?
+
+--> 1. Error is related to incompatible types which is int datatype cannot be converted to Boolean.That is why lop does not execute as expected.
+    2. Error can be solved as follows:
+
+--> Corrected code:- 
+	public class IncorrectWhileCondition { 
+    		public static void main(String[] args) { 
+        		int count = 5; 
+        		while (count != 0) { 
+            			System.out.println(count); 
+            			count--; 
+        		} 
+    		} 
+	} 
+
+
+Snippet 3:  
+public class DoWhileIncorrectCondition { 
+    public static void main(String[] args) { 
+        int num = 0; 
+        do { 
+            System.out.println(num); 
+            num++; 
+        } while (num > 0); 
+ 
+ 
+    } 
+} 
+// Error to investigate: Why does the loop only execute once? What is wrong with the loop condition in the `do
+while` loop? 
+
+--> 1. The loop runs only once. This is because in the do-while loop do block will always run at least once even while condition gets false even in first iteration and it happened because int num increamented to 1 and while condition was num>0.
+    2. Error can be solved as follows:
+
+--> Corrected code:- 
+	public class DoWhileIncorrectCondition { 
+    		public static void main(String[] args) { 
+        		int num = 0; 
+       			do { 
+            		    System.out.println(num); 
+            		    num++; 
+        		} while (num < 5); 
+ 
+
+    		} 
+	} 
+
+
+Snippet 4:  
+public class OffByOneErrorForLoop { 
+    public static void main(String[] args) { 
+        for (int i = 1; i <= 10; i++) { 
+            System.out.println(i); 
+        } 
+        // Expected: 10 iterations with numbers 1 to 10 
+        // Actual: Prints numbers 1 to 10, but the task expected only 1 to 9 
+    } 
+} 
+// Error to investigate: What is the issue with the loop boundaries? How should the loop be adjusted to meet the 
+expected output?
+
+--> 1. The loop starts from 1 because of initialization and in the testing condition the instruction is given such that it will run up to 10 which is upper boundary. That's why 10 	iterations will take place.
+    2. To print up to 9 only we have to make i<=9 as follows;
+
+--> Corrected code:- 
+	public class OffByOneErrorForLoop { 
+    		public static void main(String[] args) { 
+        		for (int i = 1; i <= 9; i++) { 
+            			System.out.println(i); 
+        		} 
+            	} 
+	} 
+
+
+Snippet 5:  
+public class WrongInitializationForLoop { 
+    public static void main(String[] args) { 
+        for (int i = 10; i >= 0; i++) { 
+            System.out.println(i); 
+        } 
+    } 
+} 
+// Error to investigate: Why does this loop not print numbers in the expected order? What is the problem with the 
+initialization and update statements in the `for` loop?
+
+--> 1. The loop runs infinitely because because the of the initialization(i=10).Initialization starts from 10 and the it increases by 1 further each time the iteration happens.
+       It goes in opposite direction and it will always be true so it runs infinitely as long as memory is not full.
+    2. 2. It can stop by making initialization i=0 and test condition i <= 10 as follows:-
+
+--> Corrected code:-
+	public class WrongInitializationForLoop { 
+    		public static void main(String[] args) { 
+        		for (int i = 0; i <= 10; i++) { 
+            			System.out.println(i); 
+        		} 
+    		} 
+	} 
+
+
+Snippet 6:  
+public class MisplacedForLoopBody { 
+    public static void main(String[] args) { 
+        for (int i = 0; i < 5; i++) 
+            System.out.println(i); 
+            System.out.println("Done"); 
+    } 
+} 
+// Error to investigate: Why does "Done" print only once, outside the loop? How should the loop body be enclosed to 
+include all statements within the loop?
+
+--> 1. The for loop is only controlling the first statement (System.out.println(i);).The second System.out.println("Done"); is outside the loop because there are no braces {}.
+       This means "Done" is printed only once after the loop completes.
+    2. the loop body should be enclosed to include all statements within the loop like below;
+
+--> Corrected code:-
+	public class MisplacedForLoopBody { 
+    		public static void main(String[] args) { 
+        		for (int i = 0; i < 5; i++) {
+            			System.out.println(i); 
+            			System.out.println("Done"); 
+			}
+    		} 
+	} 
+
+
+Snippet 7:  
+public class UninitializedWhileLoop { 
+    public static void main(String[] args) { 
+        int count; 
+ 
+ 
+        while (count < 10) { 
+            System.out.println(count); 
+            count++; 
+        } 
+    } 
+} 
+// Error to investigate: Why does this code produce a compilation error? What needs to be done to initialize the loop 
+variable properly? 
+
+--> 1. In Java, local variables (like count inside main) must be initialized before use. count is declared but not initialized before being used in while (count < 10).
+    2. The error is solved in following code.
+
+--> Corrected code:-
+	public class UninitializedWhileLoop { 
+    		public static void main(String[] args) { 
+        		int count = 0; 
+
+        		while (count < 10) { 
+            			System.out.println(count); 
+            			count++; 
+        		} 
+    		} 
+	}
+
+
+Snippet 8:  
+public class OffByOneDoWhileLoop { 
+    public static void main(String[] args) { 
+        int num = 1; 
+        do { 
+            System.out.println(num); 
+            num--; 
+        } while (num > 0); 
+    } 
+} 
+// Error to investigate: Why does this loop print unexpected numbers? What adjustments are needed to print the 
+numbers from 1 to 5? 
+
+--> 1.If the intention was to print numbers from 1 to N, then decrementing (num--) is incorrect. Instead, we should increment if the goal was to print a sequence like 1, 2, 3, ... N.
+    2. The adjustments are needed as following;
+
+--> Corrected code:-
+	public class OffByOneDoWhileLoop { 
+    		public static void main(String[] args) { 
+        		int num = 1; 
+        		do { 
+            			System.out.println(num); 
+            			num--; 
+        		} while (num <=5); 
+    		} 
+	} 
+
+
+Snippet 9:  
+public class InfiniteForLoopUpdate { 
+    public static void main(String[] args) { 
+        for (int i = 0; i < 5; i += 2) { 
+            System.out.println(i); 
+        } 
+    } 
+} 
+// Error to investigate: Why does the loop print unexpected results or run infinitely? How should the loop update 
+expression be corrected?
+
+--> 1. This loop does NOT run infinitely. Instead, it prints 0, 2, 4. If the expectation was to increment i by 1, then i += 2 is incorrect.
+    2. the loop update expression should be corrected as:
+
+--> Corrected code:-
+	public class InfiniteForLoopUpdate { 
+    		public static void main(String[] args) { 
+        		for (int i = 0; i < 5; i++) { 
+            			System.out.println(i); 
+        		} 
+    		} 
+	} 
+
+
+Snippet 10:  
+public class IncorrectWhileLoopControl { 
+    public static void main(String[] args) { 
+        int num = 10; 
+        while (num = 10) { 
+            System.out.println(num); 
+            num--; 
+        } 
+    } 
+} 
+// Error to investigate: Why does the loop execute indefinitely? What is wrong with the loop condition?
+
+--> 1.Error is int cannot be converted to Boolean. That's why the loop executes indefinitely. = is an assignment operator, not a comparison operator.
+	In Java, a while condition must evaluate to a boolean (true or false).
+    
+--> Corrected code:-
+	public class IncorrectWhileLoopControl { 
+    		public static void main(String[] args) { 
+        		int num = 10; 
+        		while (num == 10) { 
+            			System.out.println(num); 
+            			num--;  
+        		} 
+    		} 
+	} 
+
+
+Snippet 11:  
+public class IncorrectLoopUpdate { 
+    public static void main(String[] args) { 
+        int i = 0; 
+        while (i < 5) { 
+            System.out.println(i); 
+            i += 2; // Error: This may cause unexpected results in output 
+        } 
+    } 
+} 
+// Error to investigate: What will be the output of this loop? How should the loop variable be updated to achieve the 
+desired result? 
+
+--> 1. The output will be 0,2,4.
+    2. If the goal was to print every number from 0 to 4, using i += 2 skips 1 and 3.If an increment of 1 was intended, then i++ should be used instead.
+   
+--> Corrected code:-
+	public class CorrectLoopUpdate { 
+    		public static void main(String[] args) { 
+        		int i = 0; 
+        		while (i < 5) { 
+            			System.out.println(i); 
+            			i++;  
+        		} 
+    		} 
+	} 
+
+
+
+ 
+Snippet 12:  
+public class LoopVariableScope { 
+    public static void main(String[] args) { 
+        for (int i = 0; i < 5; i++) { 
+            int x = i * 2; 
+        } 
+        System.out.println(x); // Error: 'x' is not accessible here 
+    } 
+} 
+// Error to investigate: Why does the variable 'x' cause a compilation error? 
+
+--> 1. The variable x is declared inside the for loop, meaning it is local to the loop body. Once the loop ends, x goes out of scope, making it inaccessible in System.out.println(x);
+       
+--> Corrected code:-
+	public class LoopVariableScope { 
+    		public static void main(String[] args) { 
+        		int x = 0; // Declare x outside the loop
+        		for (int i = 0; i < 5; i++) { 
+            			x = i * 2; 
+        		} 
+        		System.out.println(x);
+    		} 
+	} 
+
+
+SECTION 2:-
+
+Snippet 1:  
+public class NestedLoopOutput { 
+    public static void main(String[] args) { 
+        for (int i = 1; i <= 3; i++) { 
+            for (int j = 1; j <= 2; j++) { 
+                System.out.print(i + " " + j + " "); 
+            } 
+            System.out.println(); 
+ 
+ 
+        } 
+    } 
+} 
+// Guess the output of this nested loop.
+
+--> 
+Dry Run 
+
+Iteration 1: i = 1
+j = 1 → print(1 1 )
+j = 2 → print(1 2 )
+println() → Moves to the next line
+
+Iteration 2: i = 2
+j = 1 → print(2 1 )
+j = 2 → print(2 2 )
+println() → Moves to the next line
+
+Iteration 3: i = 3
+j = 1 → print(3 1 )
+j = 2 → print(3 2 )
+println() → Moves to the next line
+
+Output:-
+1 1 1 2 
+2 1 2 2 
+3 1 3 2 
+
+
+Snippet 2:  
+public class DecrementingLoop { 
+    public static void main(String[] args) { 
+        int total = 0; 
+        for (int i = 5; i > 0; i--) { 
+            total += i; 
+            if (i == 3) continue; 
+            total -= 1; 
+        } 
+        System.out.println(total); 
+    } 
+} 
+// Guess the output of this loop.
+
+--> 
+Dry Run :- 
+
+Start: total = 0
+Iteration 1 (i = 5)
+total += 5 → total = 5
+total -= 1 → total = 4
+
+Iteration 2 (i = 4)
+total += 4 → total = 8
+total -= 1 → total = 7
+
+Iteration 3 (i = 3)
+total += 3 → total = 10
+continue skips total -= 1
+
+Iteration 4 (i = 2)
+total += 2 → total = 12
+total -= 1 → total = 11
+
+Iteration 5 (i = 1)
+total += 1 → total = 12
+total -= 1 → total = 11
+
+Loop ends, print total → Output: 11
+
+Output:- 11
+
+
+Snippet 3:  
+public class WhileLoopBreak { 
+    public static void main(String[] args) { 
+        int count = 0; 
+        while (count < 5) { 
+            System.out.print(count + " "); 
+            count++; 
+            if (count == 3) break; 
+        } 
+        System.out.println(count); 
+    } 
+} 
+// Guess the output of this while loop.
+
+-->
+Dry run:- 
+
+Start: count = 0
+
+Iteration 1 (count = 0)
+Print 0
+Increment count → 1
+Condition (count == 3)? No → Continue
+
+Iteration 2 (count = 1)
+Print 1
+Increment count → 2
+Condition (count == 3)? No → Continue
+
+Iteration 3 (count = 2)
+Print 2
+Increment count → 3
+Condition (count == 3)? Yes → Break loop
+Print final count → 3
+
+Output:- 0 1 2 3
+
+
+Snippet 4:  
+public class DoWhileLoop { 
+    public static void main(String[] args) { 
+        int i = 1; 
+        do { 
+            System.out.print(i + " "); 
+            i++; 
+        } while (i < 5); 
+        System.out.println(i); 
+    } 
+} 
+// Guess the output of this do-while loop.
+
+-->
+Dry run
+
+i = 1
+Iteration 1: Print 1, increment i → 2
+Iteration 2: Print 2, increment i → 3
+Iteration 3: Print 3, increment i → 4
+Iteration 4: Print 4, increment i → 5
+Condition i < 5 is false, exit loop
+Print final i = 5 
+ 
+Output:- 1 2 3 4 5
+
+ 
+Snippet 5:  
+public class ConditionalLoopOutput { 
+    public static void main(String[] args) { 
+        int num = 1; 
+        for (int i = 1; i <= 4; i++) { 
+            if (i % 2 == 0) { 
+                num += i; 
+            } else { 
+                num -= i; 
+            } 
+        } 
+        System.out.println(num); 
+    } 
+} 
+// Guess the output of this loop. 
+
+--> 
+Dry run
+
+num = 1
+Iteration 1 (i = 1): 1 % 2 != 0 → num = num - 1 = 0
+Iteration 2 (i = 2): 2 % 2 == 0 → num = num + 2 = 2
+Iteration 3 (i = 3): 3 % 2 != 0 → num = num - 3 = -1
+Iteration 4 (i = 4): 4 % 2 == 0 → num = num + 4 = 3
+
+Output:- 3
+
+ 
+Snippet 6:  
+public class IncrementDecrement { 
+    public static void main(String[] args) { 
+        int x = 5; 
+        int y = ++x - x-- + --x + x++; 
+        System.out.println(y); 
+    } 
+} 
+// Guess the output of this code snippet. 
+
+-->
+Dry run
+
+1. x = 5
+2. ++x = 6 → 6 -
+3. x-- = 6 → 6 - 6 = 0
+4. --x = 4 → 0 + 4 = 4
+5. x++ = 4 → 4 + 4 = 8
+
+Output:- 8
+
+ 
+Snippet 7:  
+public class NestedIncrement { 
+    public static void main(String[] args) { 
+        int a = 10; 
+        int b = 5; 
+        int result = ++a * b-- - --a + b++; 
+        System.out.println(result); 
+    } 
+} 
+// Guess the output of this code snippet. 
+
+-->
+Dry run
+
+1. a = 10, b = 5
+2. ++a = 11 → 11 * 5 = 55
+3. b-- = 5, now b = 4
+4. --a = 10, 55 - 10 = 45
+5. b++ = 4, b becomes 5 → result = 45 + 4 = 49
+
+Output:- 49
+
+ 
+Snippet 8:  
+public class LoopIncrement { 
+    public static void main(String[] args) { 
+        int count = 0; 
+        for (int i = 0; i < 4; i++) { 
+            count += i++ - ++i; 
+        } 
+        System.out.println(count); 
+    } 
+ 
+ 
+} 
+// Guess the output of this code snippet.
+
+-->
+Dry Run:
+
+count = 0, i = 0
+
+Iteration 1 (i = 0):
+i++ = 0, then i = 1
+++i = 2 → 0 - 2 = -2
+count = count + (-2) = -2, i = 2
+
+Iteration 2 (i = 2):
+i++ = 2, then i = 3
+++i = 4 → 2 - 4 = -2
+count = count + (-2) = -4, i = 4
+
+Loop ends as i < 4 is now false
+
+Output :- -4
+
+SECTION 3:-
+
+1. Write a program to calculate the sum of the first 50 natural numbers. 
+
+-->public class Sum {
+    public static void main(String[] args) {
+        int sum = 0;
+        for (int i = 1; i <= 50; i++) {
+            sum += i;
+        }
+        System.out.println("Sum: " + sum);
+    }
+}
+
+2. Write a program to compute the factorial of the number 10. 
+
+-->public class Factorial {
+    public static void main(String[] args) {
+        int fact = 1;
+        for (int i = 1; i <= 10; i++) {
+            fact *= i;
+        }
+        System.out.println("Factorial of 10: " + fact);
+    }
+}
+
+3. Write a program to print all multiples of 7 between 1 and 100. 
+
+-->public class Multiple {
+    public static void main(String[] args) {
+        for (int i = 7; i <= 100; i += 7) {
+            System.out.print(i + " ");
+        }
+    }
+}
+
+4. Write a program to reverse the digits of the number 1234. The output should be 4321. 
+
+-->public class Reverse {
+    public static void main(String[] args) {
+        int num = 1234, rev = 0;
+        while (num > 0) {
+            rev = rev * 10 + num % 10;
+            num /= 10;
+        }
+        System.out.println("Reversed: " + rev);
+    }
+}
+
+5. Write a program to print the Fibonacci sequence up to the number 21. 
+
+-->public class Fibonacci {
+    public static void main(String[] args) {
+        int a = 0, b = 1, sum;
+        System.out.print(a + " " + b + " ");
+        while ((sum = a + b) <= 21) {
+            System.out.print(sum + " ");
+            a = b;
+            b = sum;
+        }
+    }
+}
+
+6. Write a program to find and print the first 5 prime numbers. 
+
+--> public class FirstFivePrimes {
+    public static void main(String[] args) {
+        int count = 0;
+
+        for (int num = 2; count < 5; num++) {
+            boolean prime = true;
+
+            for (int i = 2; i * i <= num; i++) { // Checking divisibility
+                if (num % i == 0) {
+                    prime = false;
+                    break;
+                }
+            }
+
+            if (prime) {
+                System.out.print(num + " ");
+                count++;
+            }
+        }
+    }
+}
+
+
+7. Write a program to calculate the sum of the digits of the number 9876. The output should be 
+30 (9 + 8 + 7 + 6). 
+
+-->public class SumOfDigits {
+    public static void main(String[] args) {
+        int num = 9876, sum = 0;
+        while (num > 0) {
+            sum += num % 10;
+            num /= 10;
+        }
+        System.out.println("Sum: " + sum);
+    }
+}
+
+8. Write a program to count down from 10 to 0, printing each number. 
+
+-->public class Countdown {
+    public static void main(String[] args) {
+        for (int i = 10; i >= 0; i--) {
+            System.out.print(i + " ");
+        }
+    }
+}
+
+9. Write a program to find and print the largest digit in the number 4825.
+
+-->public class Largest {
+    public static void main(String[] args) {
+        int num = 4825, max = 0;
+        while (num > 0) {
+            max = Math.max(max, num % 10);
+            num /= 10;
+        }
+        System.out.println("Largest Digit: " + max);
+    }
+}
+ 
+10. Write a program to print all even numbers between 1 and 50. 
+
+-->public class Even {
+    public static void main(String[] args) {
+        for (int i = 2; i <= 50; i += 2) {
+            System.out.print(i + " ");
+        }
+    }
+}
+
+11. Write a Java program to demonstrate the use of both pre-increment and post-decrement 
+operators in a single expression 
+
+-->public class PrePost {
+    public static void main(String[] args) {
+        int a = 5;
+        int b = a-- + ++a;
+        System.out.println("Result: " + b);
+    }
+}
+
+12. Write a program to draw the following pattern: 
+***** 
+***** 
+***** 
+***** 
+***** 
+public class StarPattern {
+    public static void main(String[] args) {
+        for (int i = 0; i < 5; i++) {
+            System.out.println("*****");
+        }
+    }
+}
+
+13. Write a program to print the following pattern: 
+1 
+2*2 
+3*3*3 
+4*4*4*4 
+5*5*5*5*5 
+5*5*5*5*5 
+4*4*4*4 
+3*3*3 
+2*2 
+ 
+-->public class NumberPattern {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 5; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(i);
+                if (j < i) System.out.print("*");
+            }
+            System.out.println();
+        }
+        for (int i = 5; i >= 1; i--) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(i);
+                if (j < i) System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+
+ 
+1 
+14. Write a program to print the following pattern: 
+ * 
+ ** 
+ *** 
+ ***** 
+ ******* 
+ ********* 
+
+-->public class Pyramid {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 5; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+
+15. Write a program to print the following pattern: 
+    * 
+   ** 
+  *** 
+ **** 
+***** 
+
+-->public class RightTriangle {
+    public static void main(String[] args) {
+        int n = 5;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+
+16. Write a program to print the following pattern: 
+    * 
+   *** 
+  ***** 
+ ******* 
+********* 
+
+-->public class NormalPyramid {
+    public static void main(String[] args) {
+        int n = 5;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= (2 * i - 1); j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+
+17. Write a program to print the following pattern: 
+***** 
+ **** 
+  *** 
+   ** 
+    * 
+
+-->public class InvertedTriangle {
+    public static void main(String[] args) {
+        int n = 5;
+        for (int i = n; i >= 1; i--) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+
+18. Write a program to print the following pattern: 
+    * 
+   *** 
+  ***** 
+ ******* 
+  ***** 
+   *** 
+    * 
+
+-->public class Diamond {
+    public static void main(String[] args) {
+        int n = 4;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= (2 * i - 1); j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        for (int i = n - 1; i >= 1; i--) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= (2 * i - 1); j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+
+19. Write a program to print the following pattern: 
+1 
+1*2 
+1*2*3 
+1*2*3*4 
+1*2*3*4*5 
+
+-->public class Increasing {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 5; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(j);
+                if (j < i) System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+20. Write a program to print the following pattern: 
+5 
+5*4 
+5*4*3 
+5*4*3*2 
+5*4*3*2*1 
+
+-->public class DecreasingNumbers {
+    public static void main(String[] args) {
+        for (int i = 5; i >= 1; i--) {
+            for (int j = 5; j >= 6 - i; j--) {
+                System.out.print(j);
+                if (j > 6 - i) System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+
+21. Write a program to print the following pattern: 
+1 
+1*3 
+1*3*5 
+1*3*5*7 
+
+-->1*3*5*7*9 
+public class Odd {
+    public static void main(String[] args) {
+        int num = 1;
+        for (int i = 1; i <= 5; i++) {
+            int temp = 1;
+            for (int j = 1; j <= i; j++) {
+                System.out.print(temp);
+                if (j < i) System.out.print("*");
+                temp += 2;
+            }
+            System.out.println();
+        }
+    }
+}
+
+22. Write a program to print the following pattern: 
+********* 
+******* 
+***** 
+*** 
+* 
+*** 
+***** 
+******* 
+********* 
+
+--> class TwoPeak {
+    public static void main(String[] args) {
+        int rows = 5; // Number of rows in the top half
+
+        // Upper half of the pattern
+        for (int i = rows; i > 0; i--) {
+            for (int j = 0; j < 2 * i - 1; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+        // Lower half of the pattern
+        for (int i = 2; i <= rows; i++) {
+            for (int j = 0; j < 2 * i - 1; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+23. Write a program to print the following pattern: 
+11111 
+22222 
+33333 
+44444 
+55555 
+
+-->public class NumberPatterns {
+    public static void main(String[] args) {
+        // First pattern
+        for (int i = 1; i <= 5; i++) {
+            for (int j = 1; j <= 5; j++) {
+                System.out.print(i);
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+}
+       
+24. Write a program to print the following pattern:
+1 
+22 
+333 
+4444 
+55555 
+
+-->public class NumberRepetitionPattern {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 5; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(i);
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+25. Write a program to print the following pattern:
+1 
+12 
+123 
+1234 
+
+-->public class Incremental {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 4; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(j);
+            }
+            System.out.println();
+        }
+    }
+}
+
+26. Write a program to print the following pattern: 
+  
+1 
+2 3 
+4 5 6 
+7 8 9 10 
+11 12 13 14 15 
+
+--> public class NumberTriangle {
+    public static void main(String[] args) {
+        int num = 1;
+        for (int i = 1; i <= 5; i++) {  
+            for (int j = 1; j <= i; j++) {  
+                System.out.print(num + " ");
+                num++;  // Increment the number
+            }
+            System.out.println();
+        }
+    }
+}
+
+       
